@@ -28,6 +28,7 @@ before_install:
   - echo $PATH
   - echo $LD_LIBRARY_PATH
   - pkg-config --list-all | grep oci8
+  - go env
   - >
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
       echo "Cflags: -I${ORACLE_HOME}/sdk/include";
@@ -40,6 +41,6 @@ script:
   - make test
   - make build
 
-matrix:
-  allow_failures:
-    - go: tip
+#matrix:
+#  allow_failures:
+#    - go: tip
