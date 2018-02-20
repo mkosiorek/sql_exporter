@@ -22,8 +22,8 @@ before_install:
   - ORACLE_FILE=instantclient/121020/instantclient-sdk-linux.x64-12.1.0.2.0.zip .travis/oracle/download.sh
   - unzip .travis/oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip
   - unzip .travis/oracle/instantclient-sdk-linux.x64-12.1.0.2.0.zip
-  - export LD_LIBRARY_PATH=$ORACLE_HOME
-  - export PATH=$PATH:$ORACLE_HOME
+  - export LD_LIBRARY_PATH=$ORACLE_HOME:$ORACLE_HOME/sdk/include
+  - export PATH=$PATH:$ORACLE_HOME:$ORACLE_HOME/sdk/include
   - echo $PATH
   - echo $LD_LIBRARY_PATH
 #  - pkg-config --list-all | grep oci8
