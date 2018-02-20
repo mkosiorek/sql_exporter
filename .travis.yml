@@ -18,20 +18,17 @@ before_install:
   - wget 'https://github.com/cbandy/travis-oracle/archive/v2.0.3.tar.gz'
   - mkdir -p .travis/oracle
   - tar x -C .travis/oracle --strip-components=1 -f v2.0.3.tar.gz
-  - export ORACLE_FILE=instantclient/121020/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
-  - .travis/oracle/download.sh
-  - sudo dpkg --install `sudo alien --scripts --to-deb .travis/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm | cut -d' ' -f1`
-  - export ORACLE_FILE=instantclient/121020/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
-  - .travis/oracle/download.sh
-  - sudo dpkg --install `sudo alien --scripts --to-deb .travis/oracle/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm | cut -d' ' -f1`
-  - export PATH="${PATH}:${ORACLE_HOME}/bin:${ORACLE_HOME}/lib"
+  - ORACLE_FILE=instantclient/121020/instantclient-basic-linux.x64-12.1.0.2.0.zip .travis/oracle/download.sh
+  - unzip .travis/oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip
+  - ORACLE_FILE=instantclient/121020/instantclient-sdk-linux.x64-12.1.0.2.0.zip .travis/oracle/download.sh
+  - unzip .travis/oracle/instantclient-sdk-linux.x64-12.1.0.2.0.zip
   - export LD_LIBRARY_PATH="${ORACLE_HOME}/lib"
   - echo $PATH
   - echo $LD_LIBRARY_PATH
   - >
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
-      echo "Cflags: -I/usr/include/oracle/12.1/client64/";
-      echo "Libs: -L$ORACLE_HOME/lib -Wl,-rpath,$ORACLE_HOME/lib -lclntsh";
+      echo "Cflags: -I$ORACLE_HOME/sdk/include";
+      echo "Libs: -L$ORACLE_HOME -Wl,-rpath,$ORACLE_HOME -lclntsh";
     } | tee ~/.pkgconfig/oci8.pc
 
 script:
