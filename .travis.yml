@@ -11,8 +11,9 @@ env:
     - ORACLE_HOME=/usr/lib/oracle/12.1/client64
     - ORACLE_SID=XE
     - ORACLE_COOKIE=ic_linuxx8664
-    - PKG_CONFIG_PATH="."
+    - PKG_CONFIG_PATH=~/.pkgconfig
 before_install:
+  - mkdir $PKG_CONFIG_PATH
   - sudo apt-get --no-install-recommends -qq install alien bc libaio1 unzip
   - wget 'https://github.com/cbandy/travis-oracle/archive/v2.0.3.tar.gz'
   - mkdir -p .travis/oracle
@@ -31,7 +32,7 @@ before_install:
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
       echo "Cflags: -I/usr/include/oracle/12.1/client64/";
       echo "Libs: -L$ORACLE_HOME/lib -Wl,-rpath,$ORACLE_HOME/lib -lclntsh";
-    } | tee oci8.pc
+    } | tee vendor/github.com/mattn/go-oci8/oci8.pc
 
 script:
   - make style
