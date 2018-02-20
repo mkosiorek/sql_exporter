@@ -28,8 +28,8 @@ before_install:
   - echo $LD_LIBRARY_PATH
   - >
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
-      echo "Cflags: -I$ORACLE_HOME/sdk/include";
-      echo "Libs: -L$ORACLE_HOME -Wl,-rpath,$ORACLE_HOME -lclntsh";
+      echo "Cflags: -I${ORACLE_HOME}/sdk/include";
+      echo "Libs: -L${ORACLE_HOME} -lclntsh";
     } | tee ~/.pkgconfig/oci8.pc
 
 script:
