@@ -27,6 +27,7 @@ before_install:
   - export PATH=$PATH:$ORACLE_HOME
   - echo $PATH
   - echo $LD_LIBRARY_PATH
+  - pkg-config --list-all | grep oci8
   - >
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
       echo "Cflags: -I${ORACLE_HOME}/sdk/include";
