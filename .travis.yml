@@ -32,7 +32,7 @@ before_install:
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
       echo "Cflags: -I/usr/include/oracle/12.1/client64/";
       echo "Libs: -L$ORACLE_HOME/lib -Wl,-rpath,$ORACLE_HOME/lib -lclntsh";
-    } | tee vendor/github.com/mattn/go-oci8/oci8.pc
+    } | tee ~/.pkgconfig/oci8.pc
 
 script:
   - make style
