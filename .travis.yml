@@ -14,7 +14,7 @@ env:
     - PKG_CONFIG_PATH=~/.pkgconfig
 before_install:
   - mkdir $PKG_CONFIG_PATH
-  - sudo apt-get --no-install-recommends -qq install unzip
+  - sudo apt-get --no-install-recommends -qq install unzip pkg-config
   - wget 'https://github.com/cbandy/travis-oracle/archive/v2.0.3.tar.gz'
   - mkdir -p .travis/oracle
   - tar x -C .travis/oracle --strip-components=1 -f v2.0.3.tar.gz
