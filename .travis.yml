@@ -14,7 +14,7 @@ env:
     - PKG_CONFIG_PATH=~/.pkgconfig
 before_install:
   - mkdir $PKG_CONFIG_PATH
-  - sudo apt-get --no-install-recommends -qq install unzip pkg-config
+  - sudo apt-get --no-install-recommends -qq install unzip
   - wget 'https://github.com/cbandy/travis-oracle/archive/v2.0.3.tar.gz'
   - mkdir -p .travis/oracle
   - tar x -C .travis/oracle --strip-components=1 -f v2.0.3.tar.gz
@@ -26,7 +26,7 @@ before_install:
   - export PATH=$PATH:$ORACLE_HOME
   - echo $PATH
   - echo $LD_LIBRARY_PATH
-  - pkg-config --list-all | grep oci8
+#  - pkg-config --list-all | grep oci8
   - go env
   - >
     { echo "Name: oci8"; echo "Description: Oracle Call Interface"; echo "Version: 12.1";
